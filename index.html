@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUHH — Luxury Fragrance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #07060400;
+    --deep:     #0a0805;
+    --panel:    #0e0c08;
+    --border:   #1e1a10;
+    --gold:     #c8a252;
+    --gold-dim: #7a5c20;
+    --cream:    #e2d0aa;
+    --muted:    #7a6540;
+    --ghost:    #2e2618;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    background: linear-gradient(to bottom, rgba(10,8,5,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 10px 20px;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--deep); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 120px 40px 80px;
+  }
+
+  /* animated particle smoke */
+  .smoke {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .smoke-particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(180,130,60,0.07) 0%, transparent 70%);
+    animation: drift linear infinite;
+  }
+
+  @keyframes drift {
+    0%   { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+  }
+
+  .hero-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.6em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: var(--cream);
+    line-height: 0.9;
+    animation: fadeUp 1.2s 0.2s ease both;
+    position: relative;
+  }
+
+  .hero-title .gold-letter {
+    color: var(--gold);
+  }
+
+  /* Arabic subtitle */
+  .hero-arabic {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--ghost);
+    margin: 16px 0;
+    animation: fadeUp 1.2s 0.35s ease both;
+  }
+
+  .hero-rule {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 28px auto;
+    animation: fadeUp 1.2s 0.45s ease both;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    animation: fadeUp 1.2s 0.55s ease both;
+    margin-bottom: 48px;
+  }
+
+  .hero-cta-row {
+    display: flex; gap: 20px; justify-content: center;
+    animation: fadeUp 1.2s 0.7s ease both;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--deep);
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--cream); }
+
+  .btn-ghost {
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  /* SVG bottle in hero */
+  .hero-bottle {
+    margin: 60px auto 0;
+    animation: floatBottle 6s ease-in-out infinite, fadeUp 1.5s 0.9s ease both;
+    filter: drop-shadow(0 30px 80px rgba(180,130,60,0.2));
+  }
+
+  @keyframes floatBottle {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: fadeUp 2s 1.5s ease both;
+  }
+  .scroll-hint span {
+    font-size: 7px; letter-spacing: 0.4em; color: var(--ghost); text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; } 50% { opacity: 1; }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 48px; }
+
+  .section-eyebrow {
+    font-size: 8px; letter-spacing: 0.5em; color: var(--gold-dim);
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: 0.2em;
+    color: var(--cream);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .section-rule {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0.6;
+  }
+
+  .section-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 520px;
+  }
+
+  /* ── STORY ── */
+  .story {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .story-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .story-ring {
+    width: 340px; height: 340px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  .story-ring::before {
+    content: '';
+    position: absolute;
+    width: 280px; height: 280px;
+    border: 1px solid var(--ghost);
+    border-radius: 50%;
+  }
+
+  .story-ring-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ghost);
+    letter-spacing: 0.15em;
+    text-align: center;
+    line-height: 2;
+    padding: 40px;
+  }
+
+  /* ── COLLECTION ── */
+  .collection-section {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .collection-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .frag-card {
+    background: var(--deep);
+    padding: 48px 32px;
+    text-align: center;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s;
+  }
+
+  .frag-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(180,130,60,0.04));
+    transition: opacity 0.4s;
+  }
+
+  .frag-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-4px);
+  }
+
+  .frag-card:hover .frag-card-line { width: 60px; }
+
+  .frag-number {
+    font-size: 8px; letter-spacing: 0.4em;
+    color: var(--ghost); margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Mini bottle per card */
+  .mini-bottle { margin: 0 auto 24px; }
+
+  .frag-name {
+    font-family: 'Cinzel', serif;
+    font-size: 16px; letter-spacing: 0.3em;
+    color: var(--cream); margin-bottom: 6px;
+  }
+
+  .frag-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 12px;
+    color: var(--gold-dim); letter-spacing: 0.15em;
+    margin-bottom: 20px;
+  }
+
+  .frag-card-line {
+    width: 30px; height: 1px;
+    background: var(--gold); margin: 0 auto 20px;
+    transition: width 0.4s;
+  }
+
+  .frag-notes {
+    font-size: 9px; letter-spacing: 0.2em;
+    color: var(--ghost); line-height: 2;
+    text-transform: uppercase;
+  }
+
+  .frag-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--gold);
+    margin-top: 24px; letter-spacing: 0.1em;
+  }
+
+  /* ── PYRAMID ── */
+  .pyramid-section {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pyramid-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 60px auto 0;
+    max-width: 600px;
+  }
+
+  .pyr-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    padding: 28px 40px;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .pyr-row:last-child { border-bottom: 1px solid var(--border); }
+  .pyr-row:hover { background: var(--panel); }
+
+  .pyr-icon {
+    width: 36px; height: 36px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; color: var(--gold); flex-shrink: 0;
+  }
+
+  .pyr-label {
+    font-size: 7px; letter-spacing: 0.5em;
+    color: var(--gold-dim); text-transform: uppercase; margin-bottom: 4px;
+  }
+
+  .pyr-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--cream); letter-spacing: 0.1em;
+  }
+
+  .pyr-time {
+    margin-left: auto;
+    font-size: 8px; letter-spacing: 0.3em;
+    color: var(--ghost); text-transform: uppercase;
+  }
+
+  /* ── RITUAL ── */
+  .ritual-section {
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ritual-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    max-width: 1000px;
+    margin: 60px auto 0;
+  }
+
+  .ritual-card {
+    background: var(--panel);
+    padding: 48px 32px;
+    text-align: center;
+  }
+
+  .ritual-num {
+    font-family: 'Cinzel', serif;
+    font-size: 36px; color: var(--ghost);
+    margin-bottom: 16px; letter-spacing: 0.1em;
+  }
+
+  .ritual-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--cream);
+    margin-bottom: 12px; letter-spacing: 0.1em;
+  }
+
+  .ritual-desc {
+    font-size: 11px; color: var(--ghost);
+    letter-spacing: 0.1em; line-height: 1.8;
+  }
+
+  /* ── QUOTE BANNER ── */
+  .quote-banner {
+    text-align: center;
+    padding: 120px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-banner::before {
+    content: '✦';
+    position: absolute;
+    top: 40px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px; color: var(--gold-dim);
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(24px, 4vw, 42px);
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+
+  .quote-attr {
+    font-size: 8px; letter-spacing: 0.5em;
+    color: var(--gold-dim); text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-brand .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 24px; letter-spacing: 0.5em;
+    color: var(--gold); margin-bottom: 12px;
+  }
+
+  .footer-brand .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 13px;
+    color: var(--ghost); letter-spacing: 0.15em;
+  }
+
+  .footer-col h4 {
+    font-size: 8px; letter-spacing: 0.4em;
+    color: var(--gold-dim); text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 12px; }
+  .footer-col ul li a {
+    font-size: 12px; color: var(--ghost);
+    text-decoration: none; letter-spacing: 0.1em;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--cream); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-bottom span {
+    font-size: 8px; letter-spacing: 0.3em;
+    color: var(--ghost); text-transform: uppercase;
+  }
+
+  /* responsive */
+  @media (max-width: 768px) {
+    nav { padding: 18px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    .story { grid-template-columns: 1fr; gap: 40px; }
+    .story-ring { width: 260px; height: 260px; }
+    footer { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .hero { padding: 100px 24px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RUHH</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#ritual">The Ritual</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#collection" class="nav-cta">Shop Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Smoke particles -->
+  <div class="smoke">
+    <div class="smoke-particle" style="width:300px;height:300px;left:10%;animation-duration:18s;animation-delay:0s;"></div>
+    <div class="smoke-particle" style="width:200px;height:200px;left:40%;animation-duration:22s;animation-delay:4s;"></div>
+    <div class="smoke-particle" style="width:400px;height:400px;left:65%;animation-duration:16s;animation-delay:2s;"></div>
+    <div class="smoke-particle" style="width:250px;height:250px;left:25%;animation-duration:20s;animation-delay:7s;"></div>
+  </div>
+
+  <div class="hero-eyebrow">Luxury Unisex Fragrance — Est. 2025</div>
+
+  <div class="hero-title">
+    R<span class="gold-letter">U</span>HH
+  </div>
+
+  <div class="hero-arabic">روح</div>
+
+  <div class="hero-rule"></div>
+
+  <div class="hero-tagline">Wear your soul.</div>
+
+  <div class="hero-cta-row">
+    <a href="#collection" class="btn-primary">Explore Collection</a>
+    <a href="#story" class="btn-ghost">Our Story</a>
+  </div>
+
+  <!-- Hero Bottle SVG -->
+  <div class="hero-bottle">
+    <svg viewBox="0 0 160 380" width="130" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hbg" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#1a1208"/>
+          <stop offset="35%" style="stop-color:#2e2010"/>
+          <stop offset="55%" style="stop-color:#3d2c14"/>
+          <stop offset="75%" style="stop-color:#2e2010"/>
+          <stop offset="100%" style="stop-color:#1a1208"/>
+        </linearGradient>
+        <linearGradient id="hcap" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#d4a843"/>
+          <stop offset="50%" style="stop-color:#b08535"/>
+          <stop offset="100%" style="stop-color:#7a5c20"/>
+        </linearGradient>
+        <linearGradient id="hgold" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#7a5c20"/>
+          <stop offset="50%" style="stop-color:#d4a843"/>
+          <stop offset="100%" style="stop-color:#7a5c20"/>
+        </linearGradient>
+        <radialGradient id="hliq" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:#4a1a08;stop-opacity:0.5"/>
+          <stop offset="100%" style="stop-color:#1a0804;stop-opacity:0.7"/>
+        </radialGradient>
+        <filter id="hglow">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <!-- cap dome -->
+      <ellipse cx="80" cy="72" rx="32" ry="7" fill="url(#hcap)" opacity="0.9"/>
+      <path d="M48 72 Q48 26 80 18 Q112 26 112 72 Z" fill="url(#hcap)"/>
+      <circle cx="80" cy="19" r="5" fill="#d4a843" filter="url(#hglow)"/>
+      <circle cx="80" cy="19" r="2.5" fill="#f0c060"/>
+      <path d="M54 62 Q80 50 106 62" stroke="#d4a843" stroke-width="0.5" fill="none" opacity="0.5"/>
+      <rect x="47" y="72" width="66" height="9" rx="2" fill="url(#hcap)"/>
+      <rect x="45" y="79" width="70" height="3" rx="1" fill="#d4a843" opacity="0.8"/>
+      <!-- neck -->
+      <rect x="62" y="82" width="36" height="22" rx="2" fill="url(#hbg)"/>
+      <rect x="60" y="82" width="40" height="3" rx="1" fill="url(#hgold)" opacity="0.8"/>
+      <rect x="60" y="101" width="40" height="3" rx="1" fill="url(#hgold)" opacity="0.8"/>
+      <!-- shoulder -->
+      <path d="M62 104 Q44 116 42 136 L118 136 Q116 116 98 104 Z" fill="url(#hbg)"/>
+      <!-- body -->
+      <path d="M42 136 Q34 172 36 222 Q36 268 42 292 Q56 312 80 314 Q104 312 118 292 Q124 268 124 222 Q126 172 118 136 Z" fill="url(#hbg)"/>
+      <!-- liquid -->
+      <path d="M45 152 Q38 185 40 222 Q40 264 46 288 Q59 306 80 308 Q101 306 114 288 Q120 264 120 222 Q122 185 115 152 Z" fill="url(#hliq)" opacity="0.45"/>
+      <!-- label bg -->
+      <path d="M48 172 Q46 200 47 228 Q47 256 50 274 Q62 284 80 285 Q98 284 110 274 Q113 256 113 228 Q114 200 112 172 Q102 166 80 165 Q58 166 48 172 Z" fill="#080604" opacity="0.85"/>
+      <!-- label text -->
+      <text x="80" y="210" font-family="serif" font-size="18" font-weight="400" letter-spacing="7" fill="#d4a843" text-anchor="middle" opacity="0.95">RUHH</text>
+      <line x1="58" y1="218" x2="102" y2="218" stroke="#d4a843" stroke-width="0.7" opacity="0.6"/>
+      <text x="80" y="232" font-family="serif" font-size="7" letter-spacing="3" fill="#c8a860" text-anchor="middle">N O I R</text>
+      <text x="80" y="248" font-family="sans-serif" font-size="5" letter-spacing="1.5" fill="#5a4020" text-anchor="middle">EAU DE PARFUM</text>
+      <text x="80" y="270" font-size="8" fill="#d4a843" text-anchor="middle" opacity="0.5">✦</text>
+      <!-- gold side lines -->
+      <line x1="37" y1="148" x2="33" y2="290" stroke="url(#hgold)" stroke-width="0.7" opacity="0.3"/>
+      <line x1="123" y1="148" x2="127" y2="290" stroke="url(#hgold)" stroke-width="0.7" opacity="0.3"/>
+      <!-- bottom -->
+      <ellipse cx="80" cy="308" rx="39" ry="8" fill="#1a1208"/>
+      <!-- shine -->
+      <path d="M38 165 Q36 200 38 250" stroke="white" stroke-width="1.2" fill="none" opacity="0.05"/>
+    </svg>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Discover</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story">
+    <div class="story-visual">
+      <div class="story-ring">
+        <div class="story-ring-text">
+          روح<br><br>
+          <em>The Arabic word for soul —<br>
+          what remains when<br>
+          everything else fades.</em>
+        </div>
+      </div>
+    </div>
+    <div class="story-text">
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">Born from<br>depth.</h2>
+      <div class="section-rule"></div>
+      <p class="section-body">
+        RUHH was born from a simple belief: that a true fragrance does not merely smell — it speaks. It carries a signature that lingers long after you have left the room, a memory etched in scent.
+        <br><br>
+        Rooted in the ancient oud traditions of the East and refined through a modern, unisex lens, each RUHH fragrance is crafted for those who refuse to be forgotten.
+        <br><br>
+        <em style="color: var(--gold-dim); font-family: 'Cormorant Garamond', serif; font-size: 15px;">One scent. One soul. One signature.</em>
+      </p>
+      <br><br>
+      <a href="#collection" class="btn-ghost">Explore Collection</a>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section id="collection" class="collection-section">
+  <div class="collection-header">
+    <div class="section-eyebrow">The Collection</div>
+    <h2 class="section-title">Choose your soul.</h2>
+  </div>
+
+  <div class="collection-grid">
+
+    <!-- NOIR -->
+    <div class="frag-card">
+      <div class="frag-number">I</div>
+      <svg class="mini-bottle" viewBox="0 0 80 180" width="60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mg1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1a1208"/><stop offset="50%" style="stop-color:#3d2c14"/><stop offset="100%" style="stop-color:#1a1208"/>
+          </linearGradient>
+          <linearGradient id="mc1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#d4a843"/><stop offset="100%" style="stop-color:#7a5c20"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 38 Q24 44 22 56 L58 56 Q56 44 50 38 Z" fill="url(#mg1)"/>
+        <path d="M22 56 Q18 80 18 105 Q18 128 22 140 Q30 152 40 153 Q50 152 58 140 Q62 128 62 105 Q62 80 58 56 Z" fill="url(#mg1)"/>
+        <rect x="30" y="28" width="20" height="10" rx="1" fill="url(#mg1)"/>
+        <ellipse cx="40" cy="34" rx="16" ry="5" fill="url(#mc1)"/>
+        <path d="M24 36 Q24 14 40 10 Q56 14 56 36 Z" fill="url(#mc1)"/>
+        <circle cx="40" cy="10" r="3" fill="#f0c060"/>
+        <text x="40" y="108" font-family="serif" font-size="8" letter-spacing="2" fill="#d4a843" text-anchor="middle">RUHH</text>
+        <line x1="28" y1="113" x2="52" y2="113" stroke="#d4a843" stroke-width="0.5" opacity="0.6"/>
+        <text x="40" y="123" font-family="serif" font-size="5" letter-spacing="1.5" fill="#c8a860" text-anchor="middle">NOIR</text>
+      </svg>
+      <div class="frag-name">RUHH NOIR</div>
+      <div class="frag-sub">Signature · Dark & Powerful</div>
+      <div class="frag-card-line"></div>
+      <div class="frag-notes">
+        Black Pepper · Saffron<br>
+        Oud · Dark Rose<br>
+        Smoky Amber · Musk
+      </div>
+      <div class="frag-price">PKR 2,800</div>
+    </div>
+
+    <!-- ALBA -->
+    <div class="frag-card">
+      <div class="frag-number">II</div>
+      <svg class="mini-bottle" viewBox="0 0 80 180" width="60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mg2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#141820"/><stop offset="50%" style="stop-color:#20283a"/><stop offset="100%" style="stop-color:#141820"/>
+          </linearGradient>
+          <linearGradient id="mc2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#c8c8c8"/><stop offset="100%" style="stop-color:#6a6a6a"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 38 Q24 44 22 56 L58 56 Q56 44 50 38 Z" fill="url(#mg2)"/>
+        <path d="M22 56 Q18 80 18 105 Q18 128 22 140 Q30 152 40 153 Q50 152 58 140 Q62 128 62 105 Q62 80 58 56 Z" fill="url(#mg2)"/>
+        <rect x="30" y="28" width="20" height="10" rx="1" fill="url(#mg2)"/>
+        <ellipse cx="40" cy="34" rx="16" ry="5" fill="url(#mc2)"/>
+        <path d="M24 36 Q24 14 40 10 Q56 14 56 36 Z" fill="url(#mc2)"/>
+        <circle cx="40" cy="10" r="3" fill="#e8e8e8"/>
+        <text x="40" y="108" font-family="serif" font-size="8" letter-spacing="2" fill="#c8c8c8" text-anchor="middle">RUHH</text>
+        <line x1="28" y1="113" x2="52" y2="113" stroke="#c8c8c8" stroke-width="0.5" opacity="0.6"/>
+        <text x="40" y="123" font-family="serif" font-size="5" letter-spacing="1.5" fill="#a0a0a0" text-anchor="middle">ALBA</text>
+      </svg>
+      <div class="frag-name">RUHH ALBA</div>
+      <div class="frag-sub">Fresh · Daily Wear</div>
+      <div class="frag-card-line"></div>
+      <div class="frag-notes">
+        Bergamot · Green Tea<br>
+        White Musk · Iris<br>
+        Cedarwood · Vetiver
+      </div>
+      <div class="frag-price">PKR 2,500</div>
+    </div>
+
+    <!-- LAYL -->
+    <div class="frag-card">
+      <div class="frag-number">III</div>
+      <svg class="mini-bottle" viewBox="0 0 80 180" width="60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mg3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1a0d20"/><stop offset="50%" style="stop-color:#2e1a38"/><stop offset="100%" style="stop-color:#1a0d20"/>
+          </linearGradient>
+          <linearGradient id="mc3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9060c8"/><stop offset="100%" style="stop-color:#4a2870"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 38 Q24 44 22 56 L58 56 Q56 44 50 38 Z" fill="url(#mg3)"/>
+        <path d="M22 56 Q18 80 18 105 Q18 128 22 140 Q30 152 40 153 Q50 152 58 140 Q62 128 62 105 Q62 80 58 56 Z" fill="url(#mg3)"/>
+        <rect x="30" y="28" width="20" height="10" rx="1" fill="url(#mg3)"/>
+        <ellipse cx="40" cy="34" rx="16" ry="5" fill="url(#mc3)"/>
+        <path d="M24 36 Q24 14 40 10 Q56 14 56 36 Z" fill="url(#mc3)"/>
+        <circle cx="40" cy="10" r="3" fill="#c080f0"/>
+        <text x="40" y="108" font-family="serif" font-size="8" letter-spacing="2" fill="#9060c8" text-anchor="middle">RUHH</text>
+        <line x1="28" y1="113" x2="52" y2="113" stroke="#9060c8" stroke-width="0.5" opacity="0.6"/>
+        <text x="40" y="123" font-family="serif" font-size="5" letter-spacing="1.5" fill="#7040a0" text-anchor="middle">LAYL</text>
+      </svg>
+      <div class="frag-name">RUHH LAYL</div>
+      <div class="frag-sub">Night · Sensual</div>
+      <div class="frag-card-line"></div>
+      <div class="frag-notes">
+        Dark Plum · Cardamom<br>
+        Oud · Jasmine Noir<br>
+        Vanilla · Benzoin
+      </div>
+      <div class="frag-price">PKR 2,800</div>
+    </div>
+
+    <!-- 001 -->
+    <div class="frag-card">
+      <div class="frag-number">✦</div>
+      <svg class="mini-bottle" viewBox="0 0 80 180" width="60" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mg4" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1a1000"/><stop offset="50%" style="stop-color:#3a2800"/><stop offset="100%" style="stop-color:#1a1000"/>
+          </linearGradient>
+          <linearGradient id="mc4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#f0c843"/><stop offset="100%" style="stop-color:#c8a020"/>
+          </linearGradient>
+        </defs>
+        <path d="M30 38 Q24 44 22 56 L58 56 Q56 44 50 38 Z" fill="url(#mg4)"/>
+        <path d="M22 56 Q18 80 18 105 Q18 128 22 140 Q30 152 40 153 Q50 152 58 140 Q62 128 62 105 Q62 80 58 56 Z" fill="url(#mg4)"/>
+        <rect x="30" y="28" width="20" height="10" rx="1" fill="url(#mg4)"/>
+        <ellipse cx="40" cy="34" rx="16" ry="5" fill="url(#mc4)"/>
+        <path d="M24 36 Q24 14 40 10 Q56 14 56 36 Z" fill="url(#mc4)"/>
+        <circle cx="40" cy="10" r="3" fill="#fff0a0"/>
+        <text x="40" y="108" font-family="serif" font-size="8" letter-spacing="2" fill="#f0c843" text-anchor="middle">RUHH</text>
+        <line x1="28" y1="113" x2="52" y2="113" stroke="#f0c843" stroke-width="0.5" opacity="0.6"/>
+        <text x="40" y="123" font-family="serif" font-size="5" letter-spacing="1.5" fill="#c8a020" text-anchor="middle">001</text>
+      </svg>
+      <div class="frag-name">RUHH 001</div>
+      <div class="frag-sub">Limited · Founder's Edition</div>
+      <div class="frag-card-line"></div>
+      <div class="frag-notes">
+        Saffron · Aged Oud<br>
+        Amber · Mysore Sandalwood<br>
+        Civet · Pure Musk
+      </div>
+      <div class="frag-price">PKR 3,000</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PYRAMID -->
+<section>
+  <div class="pyramid-section">
+    <div class="section-eyebrow" style="text-align:center;">RUHH NOIR</div>
+    <h2 class="section-title" style="text-align:center;">The Fragrance<br>Pyramid</h2>
+    <div class="section-rule" style="margin:0 auto 0;"></div>
+
+    <div class="pyramid-wrap">
+      <div class="pyr-row">
+        <div class="pyr-icon">▲</div>
+        <div>
+          <div class="pyr-label">Top Note</div>
+          <div class="pyr-name">Black Pepper · Saffron</div>
+        </div>
+        <div class="pyr-time">0 – 30 min</div>
+      </div>
+      <div class="pyr-row">
+        <div class="pyr-icon">◆</div>
+        <div>
+          <div class="pyr-label">Heart Note</div>
+          <div class="pyr-name">Oud · Dark Rose</div>
+        </div>
+        <div class="pyr-time">30 min – 4 hrs</div>
+      </div>
+      <div class="pyr-row">
+        <div class="pyr-icon">●</div>
+        <div>
+          <div class="pyr-label">Base Note</div>
+          <div class="pyr-name">Smoky Amber · Musk · Vetiver</div>
+        </div>
+        <div class="pyr-time">4 – 12+ hrs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-banner">
+  <div class="quote-text">
+    "The right scent does not introduce you —<br>it reminds people of you."
+  </div>
+  <div class="quote-attr">— RUHH · روح</div>
+</div>
+
+<!-- RITUAL -->
+<section id="ritual" class="ritual-section">
+  <div style="text-align:center;">
+    <div class="section-eyebrow">The RUHH Ritual</div>
+    <h2 class="section-title">How to wear your soul.</h2>
+  </div>
+  <div class="ritual-grid">
+    <div class="ritual-card">
+      <div class="ritual-num">I</div>
+      <div class="ritual-title">Pulse Points</div>
+      <div class="ritual-desc">Apply to wrists, neck, and behind the ears — where warmth amplifies the scent.</div>
+    </div>
+    <div class="ritual-card">
+      <div class="ritual-num">II</div>
+      <div class="ritual-title">Don't Rub</div>
+      <div class="ritual-desc">Let the fragrance settle naturally. Rubbing breaks the top notes and shortens the life.</div>
+    </div>
+    <div class="ritual-card">
+      <div class="ritual-num">III</div>
+      <div class="ritual-title">Layer It</div>
+      <div class="ritual-desc">Apply after a shower on moisturised skin. Hydration locks the scent for up to 12 hours.</div>
+    </div>
+    <div class="ritual-card">
+      <div class="ritual-num">IV</div>
+      <div class="ritual-title">Store with care</div>
+      <div class="ritual-desc">Keep away from heat and light. A cool, dark place preserves every note perfectly.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-brand">
+    <div class="footer-logo">RUHH</div>
+    <div class="footer-tagline">Wear your soul.</div>
+    <br>
+    <div style="font-size:10px; color:var(--ghost); letter-spacing:0.15em; line-height:2;">
+      Pakistan · Luxury Unisex Fragrance<br>
+      روح · Est. 2025
+    </div>
+  </div>
+  <div class="footer-col">
+    <h4>Collection</h4>
+    <ul>
+      <li><a href="#">RUHH NOIR</a></li>
+      <li><a href="#">RUHH ALBA</a></li>
+      <li><a href="#">RUHH LAYL</a></li>
+      <li><a href="#">RUHH 001 — Limited</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">WhatsApp</a></li>
+      <li><a href="#">info@ruhh.pk</a></li>
+      <li><a href="#">Stockists</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <span>© 2025 RUHH Luxury Fragrance</span>
+  <span>روح · All rights reserved</span>
+</div>
+
+</body>
+</html>
