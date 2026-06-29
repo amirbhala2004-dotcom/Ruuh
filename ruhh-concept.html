@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RUHH — Brand Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Cinzel:wght@400;700&family=Inter:wght@200;300&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a0805;
+    color: #e8d9b8;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(180, 130, 60, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .brand-header {
+    text-align: center;
+    margin-bottom: 60px;
+    letter-spacing: 0.4em;
+  }
+
+  .brand-header .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: #b08840;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .brand-name {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(52px, 10vw, 90px);
+    font-weight: 400;
+    color: #e8d9b8;
+    letter-spacing: 0.5em;
+    line-height: 1;
+  }
+
+  .brand-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    color: #8a7050;
+    letter-spacing: 0.25em;
+    margin-top: 10px;
+  }
+
+  /* Main layout */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Bottle */
+  .bottle-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bottle-svg-container {
+    position: relative;
+    width: 200px;
+    filter: drop-shadow(0 20px 60px rgba(180, 130, 60, 0.25));
+  }
+
+  /* Left panel — ingredients */
+  .panel {
+    padding: 30px 0;
+  }
+
+  .panel-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    font-weight: 300;
+    letter-spacing: 0.5em;
+    color: #b08840;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .note-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .note-icon {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #3a2e1e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .note-content .note-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.4em;
+    color: #b08840;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .note-content .note-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #e8d9b8;
+    line-height: 1.3;
+  }
+
+  /* Right panel — brand info */
+  .right-panel {
+    padding: 30px 0;
+    text-align: right;
+  }
+
+  .right-panel .panel-title {
+    text-align: right;
+  }
+
+  .collection-item {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #1e1710;
+  }
+  .collection-item:last-child { border-bottom: none; }
+
+  .col-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: #e8d9b8;
+    margin-bottom: 4px;
+  }
+
+  .col-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #5a4a30;
+    letter-spacing: 0.05em;
+  }
+
+  /* Divider lines */
+  .divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #3a2e1e 30%, #3a2e1e 70%, transparent);
+    align-self: stretch;
+    min-height: 400px;
+  }
+
+  /* Bottom packaging row */
+  .packaging-row {
+    display: flex;
+    gap: 30px;
+    margin-top: 60px;
+    max-width: 1000px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .package-card {
+    background: #0f0c07;
+    border: 1px solid #1e1710;
+    padding: 24px 28px;
+    flex: 1;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  .package-card .pkg-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .package-card .pkg-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    letter-spacing: 0.4em;
+    color: #b08840;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .package-card .pkg-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: #c8b890;
+    line-height: 1.5;
+  }
+
+  /* Gold line accent */
+  .gold-line {
+    width: 40px;
+    height: 1px;
+    background: #b08840;
+    margin: 20px auto;
+  }
+
+  .footer-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    font-weight: 200;
+    letter-spacing: 0.5em;
+    color: #3a2e1e;
+    text-transform: uppercase;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="brand-header">
+  <div class="eyebrow">Luxury Unisex Fragrance</div>
+  <div class="brand-name">RUHH</div>
+  <div class="brand-tagline">Wear your soul</div>
+</div>
+
+<!-- Main 3-column concept -->
+<div class="concept-grid">
+
+  <!-- Left: Fragrance Notes -->
+  <div class="panel">
+    <div class="panel-title">Fragrance Pyramid</div>
+
+    <div class="note-row">
+      <div class="note-icon">▲</div>
+      <div class="note-content">
+        <div class="note-label">Top Note</div>
+        <div class="note-name">Black Pepper<br>Saffron</div>
+      </div>
+    </div>
+
+    <div class="note-row">
+      <div class="note-icon">◆</div>
+      <div class="note-content">
+        <div class="note-label">Heart Note</div>
+        <div class="note-name">Oud<br>Dark Rose</div>
+      </div>
+    </div>
+
+    <div class="note-row">
+      <div class="note-icon">●</div>
+      <div class="note-content">
+        <div class="note-label">Base Note</div>
+        <div class="note-name">Smoky Amber<br>Musk · Vetiver</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div style="display:flex; flex-direction:column; align-items:center; gap:0;">
+    <div class="divider" style="width:1px; flex:1; background: linear-gradient(to bottom, transparent, #3a2e1e 30%, #3a2e1e 70%, transparent);"></div>
+
+    <!-- SVG Bottle -->
+    <div class="bottle-svg-container">
+      <svg viewBox="0 0 200 420" xmlns="http://www.w3.org/2000/svg" width="200">
+        <defs>
+          <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1a1208;stop-opacity:1" />
+            <stop offset="30%" style="stop-color:#2e2010;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#3d2c14;stop-opacity:1" />
+            <stop offset="70%" style="stop-color:#2e2010;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1a1208;stop-opacity:1" />
+          </linearGradient>
+          <linearGradient id="capGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#d4a843" />
+            <stop offset="40%" style="stop-color:#b08535" />
+            <stop offset="100%" style="stop-color:#7a5c20" />
+          </linearGradient>
+          <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#7a5c20" />
+            <stop offset="50%" style="stop-color:#d4a843" />
+            <stop offset="100%" style="stop-color:#7a5c20" />
+          </linearGradient>
+          <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#4a1a08;stop-opacity:0.6" />
+            <stop offset="100%" style="stop-color:#2a0e04;stop-opacity:0.8" />
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Cap — ornate dome shape -->
+        <ellipse cx="100" cy="82" rx="38" ry="8" fill="url(#capGrad)" opacity="0.9"/>
+        <!-- Cap dome -->
+        <path d="M62 82 Q62 30 100 22 Q138 30 138 82 Z" fill="url(#capGrad)"/>
+        <!-- Cap top ornament -->
+        <circle cx="100" cy="24" r="6" fill="#d4a843" filter="url(#glow)"/>
+        <circle cx="100" cy="24" r="3" fill="#f0c060"/>
+        <!-- Cap ridge lines -->
+        <path d="M68 72 Q100 58 132 72" stroke="#d4a843" stroke-width="0.5" fill="none" opacity="0.6"/>
+        <path d="M65 78 Q100 66 135 78" stroke="#d4a843" stroke-width="0.5" fill="none" opacity="0.4"/>
+        <!-- Cap base ring -->
+        <rect x="60" y="82" width="80" height="10" rx="2" fill="url(#capGrad)"/>
+        <rect x="58" y="88" width="84" height="4" rx="1" fill="#d4a843" opacity="0.8"/>
+
+        <!-- Neck -->
+        <rect x="78" y="92" width="44" height="25" rx="3" fill="url(#bottleGrad)"/>
+        <rect x="76" y="92" width="48" height="4" rx="1" fill="url(#goldAccent)" opacity="0.9"/>
+        <rect x="76" y="113" width="48" height="4" rx="1" fill="url(#goldAccent)" opacity="0.9"/>
+
+        <!-- Shoulder -->
+        <path d="M78 116 Q55 130 52 155 L148 155 Q145 130 122 116 Z" fill="url(#bottleGrad)"/>
+
+        <!-- Body — curved, royal -->
+        <path d="M52 155 Q42 200 44 260 Q44 310 52 340 Q70 360 100 362 Q130 360 148 340 Q156 310 156 260 Q158 200 148 155 Z" fill="url(#bottleGrad)"/>
+
+        <!-- Liquid inside -->
+        <path d="M55 175 Q46 210 48 260 Q48 305 55 332 Q72 350 100 352 Q128 350 145 332 Q152 305 152 260 Q154 210 145 175 Z" fill="url(#liquidGrad)" opacity="0.5"/>
+
+        <!-- Gold vertical lines on body -->
+        <line x1="66" y1="158" x2="60" y2="338" stroke="url(#goldAccent)" stroke-width="0.8" opacity="0.4"/>
+        <line x1="134" y1="158" x2="140" y2="338" stroke="url(#goldAccent)" stroke-width="0.8" opacity="0.4"/>
+
+        <!-- Label area — dark panel -->
+        <path d="M58 195 Q55 230 56 270 Q57 300 60 320 Q75 332 100 333 Q125 332 140 320 Q143 300 144 270 Q145 230 142 195 Q128 188 100 187 Q72 188 58 195 Z" fill="#080604" opacity="0.85"/>
+
+        <!-- Label: Brand name -->
+        <text x="100" y="238" font-family="serif" font-size="22" font-weight="400" letter-spacing="8" fill="#d4a843" text-anchor="middle" opacity="0.95">RUHH</text>
+
+        <!-- Label: thin gold line -->
+        <line x1="72" y1="248" x2="128" y2="248" stroke="#d4a843" stroke-width="0.8" opacity="0.7"/>
+
+        <!-- Label: Fragrance name -->
+        <text x="100" y="265" font-family="serif" font-size="8" letter-spacing="3" fill="#c8a860" text-anchor="middle" opacity="0.8">N O I R</text>
+
+        <!-- Label: small text -->
+        <text x="100" y="285" font-family="sans-serif" font-size="5.5" letter-spacing="1.5" fill="#6a5030" text-anchor="middle">EAU DE PARFUM</text>
+        <text x="100" y="296" font-family="sans-serif" font-size="5" letter-spacing="1" fill="#6a5030" text-anchor="middle">50 ml · 1.7 fl oz</text>
+
+        <!-- Small ornament on label -->
+        <text x="100" y="218" font-size="10" fill="#d4a843" text-anchor="middle" opacity="0.6">✦</text>
+        <text x="100" y="314" font-size="8" fill="#d4a843" text-anchor="middle" opacity="0.4">✦</text>
+
+        <!-- Bottom of bottle -->
+        <ellipse cx="100" cy="355" rx="48" ry="10" fill="#1a1208"/>
+        <ellipse cx="100" cy="355" rx="46" ry="8" fill="#0f0c07"/>
+
+        <!-- Shine on bottle left -->
+        <path d="M52 175 Q50 220 52 280" stroke="white" stroke-width="1.5" fill="none" opacity="0.06"/>
+      </svg>
+    </div>
+
+    <div class="divider" style="width:1px; flex:1; background: linear-gradient(to bottom, transparent, #3a2e1e 30%, #3a2e1e 70%, transparent);"></div>
+  </div>
+
+  <!-- Right: Collection -->
+  <div class="right-panel">
+    <div class="panel-title">Collection</div>
+
+    <div class="collection-item">
+      <div class="col-name">RUHH NOIR ◆</div>
+      <div class="col-desc">Signature · Dark & Powerful</div>
+    </div>
+    <div class="collection-item">
+      <div class="col-name">RUHH ALBA</div>
+      <div class="col-desc">Fresh · Daily Wear</div>
+    </div>
+    <div class="collection-item">
+      <div class="col-name">RUHH LAYL</div>
+      <div class="col-desc">Evening · Sensual</div>
+    </div>
+    <div class="collection-item">
+      <div class="col-name">RUHH FAJR</div>
+      <div class="col-desc">Dawn · New Beginning</div>
+    </div>
+    <div class="collection-item">
+      <div class="col-name">RUHH 001</div>
+      <div class="col-desc">Limited Edition · Founder's</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Gold divider -->
+<div class="gold-line" style="margin-top:50px;"></div>
+
+<!-- Packaging details row -->
+<div class="packaging-row">
+  <div class="package-card">
+    <div class="pkg-icon">◼</div>
+    <div class="pkg-label">Bottle</div>
+    <div class="pkg-value">Heavy glass<br>Matte black<br>Gold detailing</div>
+  </div>
+  <div class="package-card">
+    <div class="pkg-icon">▲</div>
+    <div class="pkg-label">Cap</div>
+    <div class="pkg-value">Ornate dome<br>Gold metal<br>Jewel top</div>
+  </div>
+  <div class="package-card">
+    <div class="pkg-icon">▭</div>
+    <div class="pkg-label">Box</div>
+    <div class="pkg-value">Rigid black<br>Gold foil stamp<br>Magnetic closure</div>
+  </div>
+  <div class="package-card">
+    <div class="pkg-icon">✦</div>
+    <div class="pkg-label">Colors</div>
+    <div class="pkg-value">Obsidian Black<br>Antique Gold<br>Deep Amber</div>
+  </div>
+</div>
+
+<div class="gold-line"></div>
+<div class="footer-text">RUHH · Luxury Unisex Fragrance · Est. 2025</div>
+
+</body>
+</html>
